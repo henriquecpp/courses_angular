@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../model/course';
 import { CoursesService } from '../services/courses.service';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-courses',
@@ -18,7 +18,12 @@ export class CoursesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.courses$ = this.coursesService.list();
+    this.courses$ = this.coursesService.list()
+    .pipe(
+      catchError(error => {
+        return of([])
+      }),
+    );
   }
 
 }
