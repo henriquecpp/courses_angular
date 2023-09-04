@@ -5,6 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 //Modulo usado para centralizar os modulos do angular material, servindo como um 'Módulo Pai'
 @NgModule({
@@ -15,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatButtonModule,
+    MatIconModule,
   ],
 })
 export class AppMaterialModule { }
