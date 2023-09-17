@@ -4,6 +4,7 @@ import { CoursesService } from '../services/courses.service';
 import { Observable, catchError, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -15,18 +16,22 @@ export class CoursesComponent implements OnInit {
   courses$: Observable<Course[]> = new Observable<Course[]>;
   displayedColumns = ['name', 'category', 'actions'];
 
-  constructor(private coursesService: CoursesService, public dialog: MatDialog) {
+  constructor(private coursesService: CoursesService, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     //this.coursesService = new CoursesService();
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 
   ngOnInit(): void {
     this.courses$ = this.coursesService.list()
-    .pipe(
-      catchError(error => {
-        this.openDialog('Não foi possível carregar os dados');
-        return of([])
-      }),
-    );
+      .pipe(
+        catchError(error => {
+          this.openDialog('Não foi possível carregar os dados');
+          return of([])
+        }),
+      );
   }
 
   openDialog(errorMsg: string) {
