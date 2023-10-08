@@ -37,7 +37,7 @@ export class CourseFormComponent implements OnInit {
 
   }
 
-  onError() {
+  private onError() {
     this.snackBar.open('Erro ao salvar curso!', '', { duration: 5000});
   }
 
