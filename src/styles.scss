@@ -8,11 +8,43 @@
 //  If you don't need the default component typographies but still want the hierarchy styles,
 //  you can delete this line and instead use:
 //    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
-@include mat.all-legacy-component-typographies();
-@include mat.legacy-core();
+@include mat.core();
 
-$custom-app-primary: mat.define-palette(mat.$pink-palette, 200);
-$custom-app-accent: mat.define-palette(mat.$pink-palette, 50);
+$custom-green-palette: (
+    50 : #e7f5e0,
+    100 : #c4e5b3,
+    200 : #9cd480,
+    300 : #74c34d,
+    400 : #57b626,
+    500 : #39a900,
+    600 : #33a200,
+    700 : #2c9800,
+    800 : #248f00,
+    900 : #177e00,
+    A100 : #b5ffac,
+    A200 : #87ff79,
+    A400 : #5aff46,
+    A700 : #43ff2c,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$custom-app-primary: mat.define-palette($custom-green-palette, A700);
+$custom-app-accent: mat.define-palette($custom-green-palette, A100);
 $custom-app-warn: mat.define-palette(mat.$red-palette);
 
 $custom-theme: mat.define-dark-theme(
@@ -22,12 +54,12 @@ $custom-theme: mat.define-dark-theme(
       accent: $custom-app-accent,
       warn: $custom-app-warn,
     ),
+    typography: mat.define-typography-config(),
+    density: 0,
   )
 );
 
-@include mat.all-legacy-component-themes($custom-theme);
-@include mat.legacy-core-theme($custom-theme);
-@include mat.legacy-button-theme($custom-theme);
+@include mat.all-component-themes($custom-theme);
 
 html,
 body {
